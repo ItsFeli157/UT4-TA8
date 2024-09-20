@@ -7,43 +7,37 @@ function App() {
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingText, setEditingText] = useState('');
 
-  // Maneja el cambio en el campo de entrada
   const handleChange = (event) => {
     setCurrentTask(event.target.value);
   };
 
-  // Maneja el envío del formulario para agregar una tarea
   const handleSubmit = (event) => {
     event.preventDefault();
     if (currentTask.trim() !== '') {
       setTasks([...tasks, currentTask]);
-      setCurrentTask(''); // Limpia el campo de entrada
+      setCurrentTask('');
     }
   };
 
-  // Maneja la eliminación de una tarea
   const handleDelete = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
   };
 
-  // Activa el modo de edición para una tarea específica
   const handleEdit = (index) => {
     setEditingIndex(index);
     setEditingText(tasks[index]);
   };
 
-  // Maneja el cambio del texto durante la edición
   const handleEditChange = (event) => {
     setEditingText(event.target.value);
   };
 
-  // Guarda los cambios después de editar la tarea
   const handleSaveEdit = (index) => {
     const updatedTasks = [...tasks];
     updatedTasks[index] = editingText;
     setTasks(updatedTasks);
-    setEditingIndex(null); // Sale del modo de edición
+    setEditingIndex(null); 
   };
 
   return (
